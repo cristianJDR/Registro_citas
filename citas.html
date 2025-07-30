@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Citas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Mis Citas</h2>
+        <ul id="listaCitas"></ul>
+    </div>
+    <script>
+        fetch('citas.php')
+            .then(res => res.json())
+            .then(data => {
+                const lista = document.getElementById('listaCitas');
+                data.forEach(cita => {
+                    const li = document.createElement('li');
+                    li.textContent = `${cita.titulo} - ${cita.fecha}`;
+                    lista.appendChild(li);
+                });
+            });
+    </script>
+</body>
+
+</html>
